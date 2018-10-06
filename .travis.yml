@@ -1,0 +1,40 @@
+language: node_js
+node_js: '8'
+sudo: required
+
+before_install: npm install -g greenkeeper-lockfile
+install: npm install
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
+
+env:
+  - GK_LOCK_COMMIT_AMEND=true
+
+jobs:
+  include:
+    - stage: test
+      name: "Integration Tests"
+      script: npm run test:integration
+
+    - name: "Unit Tests"
+      addons:
+        chrome: stable
+        firefox: latest
+      before_script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+      script: npm run test:unit
+
+    - stage: deploy
+      name: "Firebase (es6-unbundled)"
+      if: tag IS present
+      script: polymer build --preset es6-unbundled
+      deploy: &firebase
+        on:
+          tags: true
+        skip_cleanup: true
+        provider: firebase
+        project: dorfolympiade
+        message: $TRAVIS_TAG
+        token:
+          secure: X0S3OCkGl+fY9jgY5veRoHBlgo6i4n+DclH43zzvPu4kAaQdVbcWZvgHlgrphXxxbaEdoikeoCuOnfZ+OnqM5OKAADAIi7QZGMn7YInhvLw7tEq/68V7g5AJcz41jKpybTjKJW4/EHzZslk9/ZT3AZIlkGKLHNGJvq5wiWRH4awBiqf1cGU87BBqurS+/tas3SUMcTlXYfsTRfqQ2th3rTPBW93sAP+4EFtu3xSn+3t4+eJpPitvLeyQ2yEhWJBq38wJ+07u2j3xPy8+2eSCNXjh70TEXrEe4Es7w5ul1NOKFFcP3TQmvwFtt4AjU6J82eON1mzIe4Tf5I/pZUiw28xFrx0rGGa/Lmom2DgF7lZ8LI4d55VIty5VgHOlGgBnBV0JQmTqFE4FeY3sHzXCyjwVvcbG9+XPwlo/aSRV1A38/ejgwhzDBwQPJMfyZhosws6ShW32t9btbIDX7VtQxylZaG9th/RP4MhfYX70S2Iru9q0UhiSa8iMYRq92ni4exTc7vfxMxvkDpJNsW3cbwwbmx58IX1g8OW1UAua3PVE3cN1nl7mw25R7BZ0zixq8+zryA+dD8aY5HujGLlLA0YQTFIv2uHa+/XJneL57EQsBQ/G5aJpK+V/sOdXX6w+ytzOK2ok9onNvzrg+T/FBuARuVbBPckD+PRN6Tx2Egs=
