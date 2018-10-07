@@ -42,6 +42,24 @@
             "label": "Build static",
             "script": "build:static",
             "problemMatcher": []
+        },
+        {
+            "label": "Release alpha",
+            "type": "shell",
+            "command": "npm run release -- --preRelease=alpha",
+            "problemMatcher": []
+        },
+        {
+            "label": "Release beta",
+            "type": "shell",
+            "command": "npm run release -- --preRelease=beta",
+            "problemMatcher": []
+        },
+        {
+            "label": "Release final",
+            "type": "npm",
+            "script": "release",
+            "problemMatcher": []
         }
     ]
 }
