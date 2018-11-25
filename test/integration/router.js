@@ -36,7 +36,7 @@ describe('routing tests', function() {
     await page.goto(`${appUrl}`);
     await page.waitForSelector('dorfolympiade-app', {visible: true});
 
-    await testNavigation(page, 'home', 'Home');
+    await testNavigation(page, 'station', 'Station');
   });
 
   it('the page selector switches pages in a different way', async function() {
@@ -59,11 +59,12 @@ describe('routing tests', function() {
       console.log(window.deepQuerySelector);
     });
 
-    await testNavigationInADifferentWay(page, 'home', 'Home');
+    await testNavigationInADifferentWay(page, 'station', 'Station');
   });
   
   it('switching the page shows the right views', async function() {
-    await testViewRouting(page, 'home', 'home-view');
+    await testViewRouting(page, 'home', 'station-view');
+    await testViewRouting(page, 'station', 'station-view');
     await testViewRouting(page, 'lizard', 'view-404');
   });
 });

@@ -25,13 +25,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../node_modules/wct-browser-legacy/browser.js"></script>
 
     <!-- Import the element to test -->
-    <script type="module" src="../../src/components/home-view.js"></script>
+    <script type="module" src="../../src/components/station-view.js"></script>
     <script type="module" src="../../src/components/view-404.js"></script>
   </head>
   <body>
-    <test-fixture id="home">
+    <test-fixture id="station">
       <template>
-        <home-view active></home-view>
+        <station-view active></station-view>
       </template>
     </test-fixture>
     <test-fixture id="404">
@@ -45,8 +45,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       import {axeReport} from 'pwa-helpers/axe-report.js';
 
       suite('views a11y tests', function() {
-        test('home-view', function() {
-          const el = fixture('home');
+        test('station-view', function() {
+          const el = fixture('station');
           return axeReport(el);
         });
 

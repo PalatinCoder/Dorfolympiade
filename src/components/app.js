@@ -154,13 +154,13 @@ class App extends connect(store)(LitElement) {
         .opened="${_drawerPersistent ? true: _drawerOpened /* persistent drawer is always open*/}" .persistent="${_drawerPersistent}"
         @opened-changed="${e => store.dispatch(updateDrawerState({opened: e.target.opened}))}">
       <nav class="drawer-list">
-        <a ?selected="${_page === 'home'}" href="/home">Home</a>
+        <a ?selected="${_page === 'station'}" href="/station">Station</a>
       </nav>
     </app-drawer>
 
     <!-- Main content -->
     <main role="main" class="main-content">
-      <home-view class="page" ?active="${_page === 'home'}"></home-view>
+      <station-view class="page" ?active="${_page === 'home' || _page === 'station'}"></station-view>
       <view-404 class="page" ?active="${_page === '404'}"></view-404>
     </main>
 
