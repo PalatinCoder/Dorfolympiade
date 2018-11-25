@@ -96,6 +96,7 @@ class App extends connect(store)(LitElement) {
         cursor: pointer;
         height: 44px;
         width: 44px;
+        outline: none;
       }
 
       .drawer-list {
