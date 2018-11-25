@@ -205,7 +205,7 @@ class App extends connect(store)(LitElement) {
     }
   }
 
-  _stateChanged(state) {
+  stateChanged(state) {
     this._page = state.app.page;
     this._offline = state.app.offline;
     this._snackbarOpened = state.app.snackbarOpened;
