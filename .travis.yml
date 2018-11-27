@@ -29,7 +29,7 @@ jobs:
       script: npm run test:unit
 
     - stage: deploy
-      name: "Firebase (es6-unbundled)"
+      name: "Firebase Production (es6-unbundled)"
       if: tag IS present
       script: polymer build --preset es6-unbundled
       deploy: &firebase
@@ -38,5 +38,16 @@ jobs:
         skip_cleanup: true
         provider: firebase
         project: dorfolympiade
+        message: $TRAVIS_TAG
+        token: $FIREBASE_TOKEN
+    - name: "Firebase Staging (es6-unbundled)"
+      if: type != pull_request AND branch = master
+      script: polymer build --preset es6-unbundled
+      deploy: &firebase
+        on:
+          branch: master
+        skip_cleanup: true
+        provider: firebase
+        project: dorfolympiade-staging
         message: $TRAVIS_TAG
         token: $FIREBASE_TOKEN
