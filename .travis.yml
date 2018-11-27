@@ -40,7 +40,8 @@ jobs:
         project: dorfolympiade
         message: $TRAVIS_TAG
         token: $FIREBASE_TOKEN
-    - name: "Firebase Staging (es6-unbundled)"
+    - stage: deploy
+      name: "Firebase Staging (es6-unbundled)"
       if: type != pull_request AND branch = master
       script: polymer build --preset es6-unbundled
       deploy: &firebase
