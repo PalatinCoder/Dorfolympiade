@@ -50,5 +50,5 @@ jobs:
         skip_cleanup: true
         provider: firebase
         project: dorfolympiade-staging
-        message: $TRAVIS_TAG
+        message: $TRAVIS_COMMIT
         token: $FIREBASE_TOKEN
