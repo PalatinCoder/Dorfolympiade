@@ -19,10 +19,8 @@ class View404 extends PageViewElement {
     return html`
       ${SharedStyles}
       <section>
-        <h2>Oops! You hit a 404</h2>
-        <p>The page you're looking for doesn't seem to exist. Head back
-           <a href="/">home</a> and try again?
-        </p>
+        <h2>Hoppla! Du hast einen 404 erwischt...</h2>
+        <p>Die aufgerufene Seite existiert nicht. Gehe einmal über <a href="/">Los</a>!</p>
       </section>
     `
   }
