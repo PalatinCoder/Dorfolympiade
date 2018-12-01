@@ -17,21 +17,21 @@ import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
 
 // This element is connected to the Redux store.
-import { store } from '../store.js';
+import { store } from './store.js';
 
 // These are the actions needed by this element.
 import {
   navigate,
   updateOffline,
   updateDrawerState
-} from '../actions/app.js';
+} from './actions/app.js';
 
 // These are the elements needed by this element.
 import '@polymer/app-layout/app-drawer/app-drawer.js';
 import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
-import './snack-bar.js';
+import './components/snack-bar.js';
 import { Icon } from '@material/mwc-icon'
 
 class App extends connect(store)(LitElement) {
