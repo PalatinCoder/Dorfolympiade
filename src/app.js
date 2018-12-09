@@ -79,6 +79,10 @@ class App extends connect(store)(LitElement) {
         border-bottom: 1px solid #eee;
       }
 
+      app-drawer {
+        z-index: 1;
+      }
+
       [main-title] {
         font-size: 30px;
         /* In the narrow layout, the toolbar is offset by the width of the
