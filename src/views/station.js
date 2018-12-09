@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
-import { DataTable } from '../components/data-table';
+import '../components/data-table';
 
 class StationView extends PageViewElement {
     render() {
