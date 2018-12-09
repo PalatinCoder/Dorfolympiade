@@ -114,6 +114,7 @@ class App extends connect(store)(LitElement) {
       .drawer-list > a {
         display: block;
         text-decoration: none;
+        outline: none;
         color: var(--palette-on-surface);
         line-height: 40px;
         padding: 0 24px;
