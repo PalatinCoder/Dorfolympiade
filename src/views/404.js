@@ -11,13 +11,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
 
-// These are the shared styles needed by this element.
-import { SharedStyles } from '../components/shared-styles.js';
-
 class View404 extends PageViewElement {
   render() {
     return html`
-      ${SharedStyles}
       <section>
         <h2>Hoppla! Du hast einen 404 erwischt...</h2>
         <p>Die aufgerufene Seite existiert nicht. Gehe einmal über <a href="/">Los</a>!</p>
