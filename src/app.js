@@ -160,7 +160,7 @@ class App extends connect(store)(LitElement) {
 
     <!-- Main content -->
     <main role="main" class="main-content">
-      <station-view class="page" ?active="${_page === 'home' || _page === 'station'}"></station-view>
+      <station-view class="page" ?active="${_page === 'station'}"></station-view>
       <view-404 class="page" ?active="${_page === '404'}"></view-404>
     </main>
 
