@@ -1,6 +1,7 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
 import '../components/data-table';
+import { Fab } from "@material/mwc-fab";
 
 class StationView extends PageViewElement {
     render() {
@@ -26,6 +27,15 @@ class StationView extends PageViewElement {
                 font-weight: normal;
                 color: #000000de; 
             }
+            mwc-fab {
+                position: fixed;
+                bottom: 24px;
+                right: 24px;
+                --mdc-theme-primary: var(--palette-primary);
+                --mdc-theme-secondary: var(--palette-secondary);
+                --mdc-theme-on-primary: var(--palette-on-primary);
+                --mdc-theme-on-secondary: var(--palette-on-secondary);
+            }
         </style>
         <h2>Feuerwehr</h2>
         <h3>Gespeicherte Ergebnisse</h3>
@@ -33,7 +43,12 @@ class StationView extends PageViewElement {
             .headings=${headings}
             .data=${data}>
         </data-table>
+        <mwc-fab icon="add" @click="${this._click}"></mwc-fab>
         `;
+    }
+
+    _click() {
+        alert('Not yet implemented ;)');
     }
 }
 
