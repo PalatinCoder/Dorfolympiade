@@ -44,7 +44,7 @@ class App extends connect(store)(LitElement) {
         --palette-primary: #3f51b5;
         --palette-dark-primary: #303f9f;
         --palette-light-primary: #c5cae9;
-        --palette-accent: #ff5252;
+        --palette-secondary: #ff5252;
         --palette-on-primary: #fff;
         --palette-on-secondary: #fff;
         --palette-text-primary: #212121;
