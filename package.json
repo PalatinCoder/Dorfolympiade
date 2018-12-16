@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@material/mwc-fab": "^0.3.3",
+    "@material/mwc-formfield": "^0.3.4",
     "@material/mwc-icon": "^0.3.0",
     "@polymer/app-layout": "^3.0.0",
     "@polymer/lit-element": "^0.6.1",

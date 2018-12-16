@@ -46,12 +46,15 @@ class StationView extends connect(store)(PageViewElement) {
             .headings=${headings}
             .data=${data}>
         </data-table>
-        <mwc-fab icon="add" @click="${this._click}"></mwc-fab>
+        <mwc-fab icon="add" @click="${this._showScoreDialog}"></mwc-fab>
+
+        <score-dialog .active="${false}"></score-dialog>
         `;
     }
 
-    _click() {
-        alert('Not yet implemented ;)');
+    _showScoreDialog() {
+        let dialog = this.parentNode.querySelector('score-dialog');
+        dialog.active = true;
     }
 
     static get properties() {
@@ -62,7 +65,7 @@ class StationView extends connect(store)(PageViewElement) {
 
     stateChanged(state) {
         this._station = state.app.station;
-     }
+    }
 }
 
 window.customElements.define('station-view', StationView);
