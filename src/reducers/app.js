@@ -22,6 +22,8 @@ const INITIAL_STATE = {
   drawerOpened: false,
   drawerPersistent: false,
   snackbarOpened: false,
+  // Dummy
+  station: { uuid: 0, name: 'Dummy Station' }
 };
 
 const app = (state = INITIAL_STATE, action) => {

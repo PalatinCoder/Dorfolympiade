@@ -1,9 +1,12 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
+import { connect } from "pwa-helpers/connect-mixin";
+import { store } from "../store";
 import '../components/data-table';
+import '../components/score-dialog';
 import { Fab } from "@material/mwc-fab";
 
-class StationView extends PageViewElement {
+class StationView extends connect(store)(PageViewElement) {
     render() {
         const data = [
                 ['Sunny', 'Schützen', 10],
@@ -37,7 +40,7 @@ class StationView extends PageViewElement {
                 --mdc-theme-on-secondary: var(--palette-on-secondary);
             }
         </style>
-        <h2>Feuerwehr</h2>
+        <h2>${this._station.name}</h2>
         <h3>Gespeicherte Ergebnisse</h3>
         <data-table 
             .headings=${headings}
@@ -50,6 +53,16 @@ class StationView extends PageViewElement {
     _click() {
         alert('Not yet implemented ;)');
     }
+
+    static get properties() {
+        return {
+            _station: { type: Object }
+        }
+    }
+
+    stateChanged(state) {
+        this._station = state.app.station;
+     }
 }
 
 window.customElements.define('station-view', StationView);
