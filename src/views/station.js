@@ -53,7 +53,7 @@ class StationView extends connect(store)(PageViewElement) {
     }
 
     _showScoreDialog() {
-        let dialog = this.parentNode.querySelector('score-dialog');
+        let dialog = this.shadowRoot.querySelector('score-dialog');
         dialog.active = true;
     }
 
