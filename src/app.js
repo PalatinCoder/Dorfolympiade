@@ -69,6 +69,7 @@ class App extends connect(store)(LitElement) {
       }
 
       app-header {
+        z-index: 1;
         position: fixed;
         top: 0;
         left: 0;

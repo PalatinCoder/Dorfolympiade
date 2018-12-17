@@ -22,6 +22,7 @@ class ScoreDialog extends connect(store)(LitElement) {
                 visibility: visible;
             }
             app-toolbar {
+                z-index: 1;
                 width: calc(100% - 32px);
                 height: 64px;
                 padding: 0 16px;
