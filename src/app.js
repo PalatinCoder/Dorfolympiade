@@ -66,6 +66,7 @@ class App extends connect(store)(LitElement) {
         /* large screen -> drawer is persistent, so we need some margin on the left to keep the content centered */
         main { margin-left: var(--app-drawer-width); }
         [main-title] { padding-left: var(--app-drawer-width); }
+        app-drawer { border-right: 1px solid var(--palette-divider); }
       }
 
       app-header {
