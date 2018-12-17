@@ -12,8 +12,8 @@ class ScoreDialog extends connect(store)(LitElement) {
                 position: absolute;
                 top: 0;
                 left: 0;
-                height: 100vh;
-                width: 100vw;
+                min-height: 100%;
+                width: 100%;
                 background: var(--palette-surface);
                 color: var(--palette-on-surface);
                 visibility: hidden;
@@ -22,7 +22,7 @@ class ScoreDialog extends connect(store)(LitElement) {
                 visibility: visible;
             }
             app-toolbar {
-                width: calc(100vw - 32px);
+                width: calc(100% - 32px);
                 height: 64px;
                 padding: 0 16px;
                 text-align: center;
