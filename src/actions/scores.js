@@ -9,9 +9,9 @@ export const addScore = ({ id, score }) => {
 };
 
 const getPlayer = (id) => {
-    return {
-        name: 'Hugo',
-        group: 'Wurscht'
+    if (id == '1234-abcd') {
+        return { name: 'Hugo', group: 'Wurscht' };
     }
+    return { name: id, group: '-' }
 }
 
