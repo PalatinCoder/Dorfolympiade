@@ -14,7 +14,6 @@ class ScoreDialog extends connect(store)(LitElement) {
                 position: absolute;
                 top: 0;
                 left: 0;
-                height: 100%;
                 min-height: 100vh;
                 width: 100%;
                 background: var(--palette-surface);
@@ -78,7 +77,7 @@ class ScoreDialog extends connect(store)(LitElement) {
             }
 
             main > div { color: #00000099; }
-            div#playerLabel { height: 16px; font-size: 14px; }
+            div#playerLabel { height: 16px; }
 
             .qr-scanner {
                 height: 200px;
@@ -93,7 +92,9 @@ class ScoreDialog extends connect(store)(LitElement) {
         </app-toolbar>
         <main>
             <div class="qr-scanner" @click="${this._qrCodeScanned}">QR Code Scanner<br>(Platzhalter)</div>
-            <paper-input label="Spieler ID" @value-changed="${this._updatePlayerLabel}" ?disabled="${this._wasPlayerIdScanned}">
+            <paper-input label="Spieler ID" 
+                required auto-validate pattern="[a-z0-9]{4}-[a-z0-9]{4}" allowed-pattern="[a-z0-9-]" error-message="Ungültige ID"
+                @value-changed="${this._updatePlayerLabel}" ?disabled="${this._wasPlayerIdScanned}">
             </paper-input>
             <div id="playerLabel"></div>
             <div class="slider-container">
@@ -118,7 +119,7 @@ class ScoreDialog extends connect(store)(LitElement) {
     _updatePlayerLabel() {
         let id = this.shadowRoot.querySelector('paper-input').value;
         let player = id == "1234-abcd" ? { name: 'Hugo', group: 'Wurscht' } : {} // someService.getPlayer(id)
-        this.shadowRoot.querySelector('#playerLabel').textContent = `${player.name} - Gruppe: ${player.group}`;
+        this.shadowRoot.querySelector('#playerLabel').textContent = 'name' in player ? `${player.name} - Gruppe: ${player.group}` : '';
     }
     _close() {
         this.active = false;
@@ -128,6 +129,8 @@ class ScoreDialog extends connect(store)(LitElement) {
     }
 
     _save() {
+        let idField = this.shadowRoot.querySelector('paper-input');
+        if (idField.invalid) return;
         let score = this.shadowRoot.querySelector('paper-slider').value;
         store.dispatch(addScore({id: '1234-abcd', score }));
         this._close();
