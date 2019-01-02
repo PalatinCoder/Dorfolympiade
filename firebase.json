@@ -8,8 +8,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "prplServer",
-        "destination": "/index.html"
+        "function": "prplServer"
       }
     ],
     "headers": [
