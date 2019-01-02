@@ -10,6 +10,8 @@ install: npm install
 before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
 
+before_deploy: ( cd functions && npm install )
+
 env:
   - GK_LOCK_COMMIT_AMEND=true
 
@@ -29,9 +31,9 @@ jobs:
       script: npm run test:unit
 
     - stage: deploy
-      name: "Firebase Production (es6-unbundled)"
+      name: "Firebase Production (PRPL Server)"
       if: tag IS present
-      script: polymer build --preset es6-unbundled
+      script: npm run build:firebase
       deploy: &firebase
         on:
           tags: true
@@ -41,9 +43,9 @@ jobs:
         message: $TRAVIS_TAG
         token: $FIREBASE_TOKEN
     - stage: deploy
-      name: "Firebase Staging (es6-unbundled)"
+      name: "Firebase Staging (PRPL Server)"
       if: type != pull_request AND branch = master
-      script: polymer build --preset es6-unbundled
+      script: npm run build:firebase
       deploy: &firebase
         on:
           branch: master
