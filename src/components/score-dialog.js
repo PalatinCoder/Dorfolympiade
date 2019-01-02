@@ -58,9 +58,12 @@ class ScoreDialog extends connect(store)(LitElement) {
                 margin-top: 50vh;
                 transition: margin-top 0.1s ease-in-out;
                 padding: 16px;
+                height: 0;
+                overflow: hidden;
             }
             :host([active]) main {
                 margin-top: 0px;
+                height: auto;
             }
             paper-slider {
                 margin-left: -16px;
