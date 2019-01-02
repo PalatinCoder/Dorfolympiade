@@ -12,7 +12,7 @@ class ScoreDialog extends connect(store)(LitElement) {
                 position: absolute;
                 top: 0;
                 left: 0;
-                min-height: 100%;
+                height: 100vh;
                 width: 100%;
                 background: var(--palette-surface);
                 color: var(--palette-on-surface);

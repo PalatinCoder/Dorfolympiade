@@ -138,7 +138,7 @@ class App extends connect(store)(LitElement) {
 
       .main-content {
         position: relative;
-        padding: 24px;
+        padding: 16;
         padding-top: 64px;
       }
 
