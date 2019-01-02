@@ -8,12 +8,6 @@ import { Fab } from "@material/mwc-fab";
 
 class StationView extends connect(store)(PageViewElement) {
     render() {
-        const data = [
-                ['Sunny', 'Schützen', 10],
-                ['Jessy', 'Schützen', 10],
-                ['Markus', 'Hütte', 10],
-                ['b9396386-6463-4249-bb9b-601a17a9d921', 'unbekannt', 10],
-            ];
         const headings = ['Spieler', 'Gruppe', 'Punktzahl'];
         return html`
         <style>
@@ -44,7 +38,7 @@ class StationView extends connect(store)(PageViewElement) {
         <h3>Gespeicherte Ergebnisse</h3>
         <data-table 
             .headings=${headings}
-            .data=${data}>
+            .data=${this._scores}>
         </data-table>
         <mwc-fab icon="add" @click="${this._showScoreDialog}"></mwc-fab>
 
@@ -59,12 +53,14 @@ class StationView extends connect(store)(PageViewElement) {
 
     static get properties() {
         return {
-            _station: { type: Object }
+            _station: { type: Object },
+            _scores: { type: Array }
         }
     }
 
     stateChanged(state) {
         this._station = state.app.station;
+        this._scores = state.scores;
     }
 }
 

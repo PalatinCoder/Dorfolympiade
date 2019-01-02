@@ -125,7 +125,8 @@ class ScoreDialog extends connect(store)(LitElement) {
     }
 
     _save() {
-        alert('No persistence yet');
+        let score = this.shadowRoot.querySelector('paper-slider').value;
+        store.dispatch(addScore({id: '1234-abcd', score }));
         this._close();
     }
 
