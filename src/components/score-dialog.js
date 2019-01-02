@@ -73,7 +73,7 @@ class ScoreDialog extends connect(store)(LitElement) {
             .slider-container label {
                 margin-left: 4px;
             }
-            
+
             main > div { color: #00000099; }
             div#playerLabel { height: 16px; font-size: 14px; }
 
@@ -84,9 +84,9 @@ class ScoreDialog extends connect(store)(LitElement) {
             }
         </style>
         <app-toolbar>
-            <button title="Close" @click="${() => this._close()}"><mwc-icon>close</mwc-icon></button>
+            <button title="Close" @click="${this._close}"><mwc-icon>close</mwc-icon></button>
             <span>Erfassen</span>
-            <button title="Save" @click="${() => this._save()}"><mwc-icon>save</mwc-icon></button>
+            <button title="Save" @click="${this._save}"><mwc-icon>save</mwc-icon></button>
         </app-toolbar>
         <main>
             <div class="qr-scanner" @click="${this._qrCodeScanned}">QR Code Scanner<br>(Platzhalter)</div>
