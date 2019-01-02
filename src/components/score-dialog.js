@@ -2,7 +2,9 @@ import { LitElement, html } from "@polymer/lit-element";
 import { connect } from "pwa-helpers/connect-mixin";
 import { store } from "../store";
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
-import { Formfield } from "@material/mwc-formfield";
+import '@polymer/paper-slider/paper-slider.js';
+import '@polymer/paper-input/paper-input.js';
+import { addScore } from "../actions/scores";
 
 class ScoreDialog extends connect(store)(LitElement) {
     render() {
@@ -12,7 +14,8 @@ class ScoreDialog extends connect(store)(LitElement) {
                 position: absolute;
                 top: 0;
                 left: 0;
-                height: 100vh;
+                height: 100%;
+                min-height: 100vh;
                 width: 100%;
                 background: var(--palette-surface);
                 color: var(--palette-on-surface);
@@ -59,9 +62,25 @@ class ScoreDialog extends connect(store)(LitElement) {
             :host([active]) main {
                 margin-top: 0px;
             }
+            paper-slider {
+                margin-left: -16px;
+                flex-grow: 1;
+            }
+            .slider-container {
+                display: flex;
+                align-items: center;
+            }
+            .slider-container label {
+                margin-left: 4px;
+            }
             
-            mwc-formfield {
-                margin: 16px 0;
+            main > div { color: #00000099; }
+            div#playerLabel { height: 16px; font-size: 14px; }
+
+            .qr-scanner {
+                height: 200px;
+                border: 1px solid black;
+                text-align: center;
             }
         </style>
         <app-toolbar>
@@ -70,21 +89,39 @@ class ScoreDialog extends connect(store)(LitElement) {
             <button title="Save" @click="${() => this._save()}"><mwc-icon>save</mwc-icon></button>
         </app-toolbar>
         <main>
-            <mwc-formfield label="Spieler" alignEnd>
-                <input type="text" readonly value="Name">
-            </mwc-formfield>
-            <mwc-formfield label="Gruppe" alignEnd>
-                <input type="text" readonly value="Name">
-            </mwc-formfield>
-            <mwc-formfield label="Punktzahl" alignEnd>
-                <input type="range" min="1" max="10" value="5" step="1">
-            </mwc-formfield>
+            <div class="qr-scanner" @click="${this._qrCodeScanned}">QR Code Scanner<br>(Platzhalter)</div>
+            <paper-input label="Spieler ID" @value-changed="${this._updatePlayerLabel}" ?disabled="${this._wasPlayerIdScanned}">
+            </paper-input>
+            <div id="playerLabel"></div>
+            <div class="slider-container">
+                <paper-slider snaps max="10" step="1" value="5" editable></paper-slider> 
+                <label>Punkte</label>
+            </div>
         </main>
         `;
     }
 
+    constructor() {
+        super();
+        this.active = false;
+        this._wasPlayerIdScanned = false;
+    }
+
+    _qrCodeScanned() {
+        this.shadowRoot.querySelector('paper-input').value = '1234-abcd';
+        this._wasPlayerIdScanned = true;
+    }
+
+    _updatePlayerLabel() {
+        let id = this.shadowRoot.querySelector('paper-input').value;
+        let player = id == "1234-abcd" ? { name: 'Hugo', group: 'Wurscht' } : {} // someService.getPlayer(id)
+        this.shadowRoot.querySelector('#playerLabel').textContent = `${player.name} - Gruppe: ${player.group}`;
+    }
     _close() {
         this.active = false;
+        this._wasPlayerIdScanned = false;
+        this.shadowRoot.querySelector('paper-slider').value = 5;
+        this.shadowRoot.querySelector('paper-input').value = "";
     }
 
     _save() {
@@ -94,7 +131,8 @@ class ScoreDialog extends connect(store)(LitElement) {
 
     static get properties() {
         return {
-            active: { type: Boolean, reflect: true }
+            active: { type: Boolean, reflect: true },
+            _wasPlayerIdScanned: { type: Boolean }
         }
     }
 }
