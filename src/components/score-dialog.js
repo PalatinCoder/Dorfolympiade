@@ -49,6 +49,7 @@ class ScoreDialog extends connect(store)(LitElement) {
                 height: 44px;
                 width: 44px;
                 outline: none;
+                -webkit-tap-highlight-color: transparent;
                 transform: rotate(0deg);
                 transition: transform 0.2s ease-out;
             }
