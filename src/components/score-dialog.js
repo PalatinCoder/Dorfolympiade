@@ -135,7 +135,7 @@ class ScoreDialog extends connect(store)(LitElement) {
 
     _save() {
         let idField = this.shadowRoot.querySelector('paper-input');
-        if (idField.invalid) return;
+        if (idField.invalid || idField.value == '') return;
         let score = this.shadowRoot.querySelector('paper-slider').value;
         let id = idField.value;
         store.dispatch(addScore({ id, score }));
