@@ -3,7 +3,6 @@ import { repeat } from "lit-html/directives/repeat";
 
 class DataTable extends LitElement {
     render() {
-        const { headings, data } = this;
         return html`
         <style>
             table { width: 100%; }
@@ -25,10 +24,10 @@ class DataTable extends LitElement {
         </style>
         <table>
             <thead>
-                ${repeat(headings, (i) => html`<th>${i}</th>`)}
+                ${repeat(this.headings, (i) => html`<th>${i}</th>`)}
             </thead>
             <tbody>
-                ${repeat(data, (row) => html`
+                ${repeat(this.data, (row) => html`
                     <tr>
                         ${row.map((value) => html`<td>${value}</td>`)}
                     </tr>
