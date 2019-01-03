@@ -107,7 +107,6 @@ class App extends connect(store)(LitElement) {
         box-sizing: border-box;
         width: 100%;
         height: 100%;
-        padding: 24px;
         padding-top: calc(var(--app-drawer-width) / 16 * 9 + 24px);
         background-color: var(--palette-surface);
         background-image: url(images/drawer-header.jpg);
@@ -122,13 +121,22 @@ class App extends connect(store)(LitElement) {
         text-decoration: none;
         outline: none;
         color: var(--palette-on-surface);
-        line-height: 40px;
-        padding: 0 24px;
+        line-height: 48px;
+        padding: 0 16px;
       }
 
       .drawer-list > a[selected] {
         color: var(--palette-primary);
         background: var(--palette-light-primary);
+      }
+
+      .drawer-list mwc-icon {
+        color: var(--palette-text-secondary);
+        margin-right: 16px;
+        vertical-align: text-bottom;
+      }
+      .drawer-list > a[selected] > mwc-icon {
+        color: inherit;
       }
 
       /* Workaround for IE11 displaying <main> as inline */
@@ -166,7 +174,7 @@ class App extends connect(store)(LitElement) {
         .opened="${_drawerPersistent ? true: _drawerOpened /* persistent drawer is always open*/}" .persistent="${_drawerPersistent}"
         @opened-changed="${e => store.dispatch(updateDrawerState({opened: e.target.opened}))}">
       <nav class="drawer-list">
-        <a ?selected="${_page === 'station'}" href="/station">Station</a>
+        <a ?selected="${_page === 'station'}" href="/station"><mwc-icon>fitness_center</mwc-icon>Station</a>
       </nav>
     </app-drawer>
 
