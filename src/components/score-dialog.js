@@ -15,6 +15,7 @@ class ScoreDialog extends connect(store)(LitElement) {
                 top: 0;
                 left: 0;
                 min-height: 100vh;
+                height: 100%;
                 width: 100%;
                 background: var(--palette-surface);
                 color: var(--palette-on-surface);
@@ -34,6 +35,11 @@ class ScoreDialog extends connect(store)(LitElement) {
                 background-color: var(--palette-primary);
                 color: var(--palette-on-primary);
                 justify-content: space-between;
+                opacity: 0;
+                transition: opacity 0.1s ease-out;
+            }
+            :host([active]) app-toolbar {
+                opacity: 1;
             }
             app-toolbar button {
                 background: none;
@@ -44,7 +50,7 @@ class ScoreDialog extends connect(store)(LitElement) {
                 width: 44px;
                 outline: none;
                 transform: rotate(0deg);
-                transition: transform 0.4s ease-out;
+                transition: transform 0.2s ease-out;
             }
             :host([active]) app-toolbar button:first-child {
                 transform: rotate(180deg);
@@ -54,15 +60,13 @@ class ScoreDialog extends connect(store)(LitElement) {
             }
 
             main {
-                margin-top: 50vh;
-                transition: margin-top 0.1s ease-in-out;
                 padding: 16px;
-                height: 0;
-                overflow: hidden;
+                transform: scale(0);
+                transform-origin: 90% 90%;
+                transition: transform 0.1s ease-out;
             }
             :host([active]) main {
-                margin-top: 0px;
-                height: auto;
+                transform: scale(1);
             }
             paper-slider {
                 margin-left: -16px;
