@@ -17,13 +17,6 @@ class StationView extends connect(store)(PageViewElement) {
                 font-size: 24px;
                 color: #000000de;
             }
-            h3 { 
-                height: 40; /* 64px - padding */ 
-                padding: 12px;
-                font-size: 20px; 
-                font-weight: normal;
-                color: #000000de; 
-            }
             mwc-fab {
                 position: fixed;
                 bottom: 24px;
@@ -35,8 +28,8 @@ class StationView extends connect(store)(PageViewElement) {
             }
         </style>
         <h2>${this._station.name}</h2>
-        <h3>Gespeicherte Ergebnisse</h3>
         <data-table 
+            title="Gespeicherte Ergebnisse"
             .headings=${headings}
             .data=${this._scores}>
         </data-table>

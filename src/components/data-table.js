@@ -5,6 +5,13 @@ class DataTable extends LitElement {
     render() {
         return html`
         <style>
+            h3 { 
+                height: 40px; /* 64px - margin */ 
+                margin: 12px;
+                font-size: 20px; 
+                font-weight: normal;
+                color: #000000de; 
+            }
             table { width: 100%; }
             table th, table td { 
                 height: 24px; /* 48 - padding */
@@ -22,6 +29,7 @@ class DataTable extends LitElement {
                 color: #000000de;
             }
         </style>
+        <h3>${this.title}</h3>
         <table>
             <thead>
                 ${repeat(this.headings, (i) => html`<th>${i}</th>`)}
@@ -38,6 +46,7 @@ class DataTable extends LitElement {
     }
 
     static get properties() { return {
+        title: { type: String },
         headings: { type: Array },
         data: { type: Array }
     }}
