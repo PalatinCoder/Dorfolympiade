@@ -86,7 +86,7 @@ class App extends connect(store)(LitElement) {
       }
 
       [main-title] {
-        font-size: 30px;
+        font-size: 26px;
         /* In the narrow layout, the toolbar is offset by the width of the
         drawer button, and the text looks not centered. Add a padding to
         match that button */

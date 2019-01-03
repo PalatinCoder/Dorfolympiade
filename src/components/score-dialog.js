@@ -50,7 +50,7 @@ class ScoreDialog extends connect(store)(LitElement) {
                 transform: rotate(180deg);
             }
             app-toolbar span {
-                font-size: 30px;
+                font-size: 26px;
             }
 
             main {
