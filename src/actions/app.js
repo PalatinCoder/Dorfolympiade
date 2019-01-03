@@ -36,6 +36,9 @@ const loadPage = (page) => (dispatch) => {
       });
       page = 'station';
       break;
+    case 'deviceinfo':
+      import('../views/device-info.js');
+      break;
     default:
       page = '404';
       import('../views/404.js');

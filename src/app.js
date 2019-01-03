@@ -176,12 +176,14 @@ class App extends connect(store)(LitElement) {
         @opened-changed="${e => store.dispatch(updateDrawerState({opened: e.target.opened}))}">
       <nav class="drawer-list">
         <a ?selected="${_page === 'station'}" href="/station"><mwc-icon>fitness_center</mwc-icon>Station</a>
+        <a ?selected="${_page === 'deviceinfo'}" href="/deviceinfo"><mwc-icon>perm_device_information</mwc-icon>Info</a>
       </nav>
     </app-drawer>
 
     <!-- Main content -->
     <main role="main" class="main-content">
       <station-view class="page" ?active="${_page === 'station'}"></station-view>
+      <deviceinfo-view class="page" ?active="${_page === 'deviceinfo'}"></deviceinfo-view>
       <view-404 class="page" ?active="${_page === '404'}"></view-404>
     </main>
 
