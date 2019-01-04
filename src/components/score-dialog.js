@@ -4,6 +4,7 @@ import { store } from "../store";
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/paper-slider/paper-slider.js';
 import '@polymer/paper-input/paper-input.js';
+import { Ripple } from "@material/mwc-ripple";
 import { addScore } from "../actions/scores";
 
 class ScoreDialog extends connect(store)(LitElement) {
@@ -91,9 +92,9 @@ class ScoreDialog extends connect(store)(LitElement) {
             }
         </style>
         <app-toolbar>
-            <button title="Close" @click="${this._close}"><mwc-icon>close</mwc-icon></button>
+            <button title="Close" @click="${this._close}"><mwc-icon>close</mwc-icon><mwc-ripple unbounded></mwc-ripple></button>
             <span>Erfassen</span>
-            <button title="Save" @click="${this._save}"><mwc-icon>save</mwc-icon></button>
+            <button title="Save" @click="${this._save}"><mwc-icon>save</mwc-icon><mwc-ripple unbounded></mwc-ripple></button>
         </app-toolbar>
         <main>
             <div class="qr-scanner" @click="${this._qrCodeScanned}">QR Code Scanner<br>(Platzhalter)</div>

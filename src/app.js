@@ -33,6 +33,7 @@ import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import './components/snack-bar.js';
 import { Icon } from '@material/mwc-icon'
+import { Ripple } from "@material/mwc-ripple";
 
 class App extends connect(store)(LitElement) {
   render() {
@@ -139,6 +140,9 @@ class App extends connect(store)(LitElement) {
       .drawer-list > a[selected] > mwc-icon {
         color: inherit;
       }
+      .drawer-list mwc-ripple {
+        --mdc-theme-primary: var(--palette-primary);
+      }
 
       /* Workaround for IE11 displaying <main> as inline */
       main {
@@ -164,7 +168,7 @@ class App extends connect(store)(LitElement) {
     <!-- Header -->
     <app-header condenses reveals effects="waterfall">
       <app-toolbar class="toolbar-top">
-        <button class="menu-btn" title="Menu" @click="${() => store.dispatch(updateDrawerState({opened: true}))}"><mwc-icon>menu</mwc-icon></button>
+        <button class="menu-btn" title="Menu" @click="${() => store.dispatch(updateDrawerState({opened: true}))}"><mwc-icon>menu</mwc-icon><mwc-ripple unbounded></mwc-ripple></button>
         <div main-title>${appTitle}</div>
       </app-toolbar>
     </app-header>
@@ -175,8 +179,8 @@ class App extends connect(store)(LitElement) {
         .opened="${_drawerPersistent ? true: _drawerOpened /* persistent drawer is always open*/}" .persistent="${_drawerPersistent}"
         @opened-changed="${e => store.dispatch(updateDrawerState({opened: e.target.opened}))}">
       <nav class="drawer-list">
-        <a ?selected="${_page === 'station'}" href="/station"><mwc-icon>fitness_center</mwc-icon>Station</a>
-        <a ?selected="${_page === 'deviceinfo'}" href="/deviceinfo"><mwc-icon>perm_device_information</mwc-icon>Info</a>
+        <a ?selected="${_page === 'station'}" href="/station"><mwc-icon>fitness_center</mwc-icon>Station<mwc-ripple primary></mwc-ripple></a>
+        <a ?selected="${_page === 'deviceinfo'}" href="/deviceinfo"><mwc-icon>perm_device_information</mwc-icon>Info<mwc-ripple primary></mwc-ripple></a>
       </nav>
     </app-drawer>
 
