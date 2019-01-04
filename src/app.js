@@ -127,17 +127,23 @@ class App extends connect(store)(LitElement) {
         padding: 0 16px;
       }
 
+      .drawer-list > a::before {
+        font-family: "Material Icons";
+        font-size: 24px;
+        line-height: 1;
+        vertical-align: text-bottom;
+        color: var(--palette-text-secondary);
+        margin-right: 16px;
+      }
+      .drawer-list > a[href="/station"]::before { content: 'fitness_center'; }
+      .drawer-list > a[href="/deviceinfo"]::before { content: 'perm_device_information'; }
+
       .drawer-list > a[selected] {
         color: var(--palette-primary);
         background: var(--palette-light-primary);
       }
 
-      .drawer-list mwc-icon {
-        color: var(--palette-text-secondary);
-        margin-right: 16px;
-        vertical-align: text-bottom;
-      }
-      .drawer-list > a[selected] > mwc-icon {
+      .drawer-list > a[selected]::before {
         color: inherit;
       }
       .drawer-list mwc-ripple {
@@ -179,8 +185,8 @@ class App extends connect(store)(LitElement) {
         .opened="${_drawerPersistent ? true: _drawerOpened /* persistent drawer is always open*/}" .persistent="${_drawerPersistent}"
         @opened-changed="${e => store.dispatch(updateDrawerState({opened: e.target.opened}))}">
       <nav class="drawer-list">
-        <a ?selected="${_page === 'station'}" href="/station"><mwc-icon>fitness_center</mwc-icon>Station<mwc-ripple primary></mwc-ripple></a>
-        <a ?selected="${_page === 'deviceinfo'}" href="/deviceinfo"><mwc-icon>perm_device_information</mwc-icon>Info<mwc-ripple primary></mwc-ripple></a>
+        <a ?selected="${_page === 'station'}" href="/station">Station<mwc-ripple primary></mwc-ripple></a>
+        <a ?selected="${_page === 'deviceinfo'}" href="/deviceinfo">Info<mwc-ripple primary></mwc-ripple></a>
       </nav>
     </app-drawer>
 
