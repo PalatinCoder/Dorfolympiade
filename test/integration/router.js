@@ -37,6 +37,7 @@ describe('routing tests', function() {
     await page.waitForSelector('dorfolympiade-app', {visible: true});
 
     await testNavigation(page, 'station', 'Station');
+    await testNavigation(page, 'deviceinfo', 'Info');
   });
 
   it('the page selector switches pages in a different way', async function() {
@@ -60,11 +61,13 @@ describe('routing tests', function() {
     });
 
     await testNavigationInADifferentWay(page, 'station', 'Station');
+    await testNavigationInADifferentWay(page, 'deviceinfo', 'Info');
   });
   
   it('switching the page shows the right views', async function() {
     await testViewRouting(page, 'home', 'station-view');
     await testViewRouting(page, 'station', 'station-view');
+    await testViewRouting(page, 'deviceinfo', 'deviceinfo-view');
     await testViewRouting(page, 'lizard', 'view-404');
   });
 });
