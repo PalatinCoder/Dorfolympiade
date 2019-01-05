@@ -135,6 +135,7 @@ class App extends connect(store)(LitElement) {
         color: var(--palette-text-secondary);
         margin-right: 16px;
       }
+      /* Drawer Icons */
       .drawer-list > a[href="/station"]::before { content: 'fitness_center'; }
       .drawer-list > a[href="/deviceinfo"]::before { content: 'perm_device_information'; }
 
@@ -181,7 +182,7 @@ class App extends connect(store)(LitElement) {
 
     <!-- Drawer content -->
     <app-drawer 
-        swipe-open    
+        swipe-open no-focus-trap 
         .opened="${_drawerPersistent ? true: _drawerOpened /* persistent drawer is always open*/}" .persistent="${_drawerPersistent}"
         @opened-changed="${e => store.dispatch(updateDrawerState({opened: e.target.opened}))}">
       <nav class="drawer-list">
