@@ -58,6 +58,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('deviceinfo-view', function() {
+          // Stub the QRCode library
+          window.QRCode = { toCanvas: function() {} };
           const el = fixture('deviceinfo');
           return axeReport(el);
         });
