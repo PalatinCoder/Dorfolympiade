@@ -32,6 +32,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <station-view active></station-view>
       </template>
     </test-fixture>
+    <test-fixture id="deviceinfo">
+      <template>
+        <deviceinfo-view active></deviceinfo-view>
+      </template>
+    </test-fixture>
     <test-fixture id="404">
       <template>
         <view-404 active></view-404>
@@ -43,11 +48,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       import 'axe-core/axe.min.js';
       import {axeReport} from 'pwa-helpers/axe-report.js';
       import '../../src/views/station.js';
+      import '../../src/views/device-info.js';
       import '../../src/views/404.js';
 
       suite('views a11y tests', function() {
         test('station-view', function() {
           const el = fixture('station');
+          return axeReport(el);
+        });
+
+        test('deviceinfo-view', function() {
+          const el = fixture('deviceinfo');
           return axeReport(el);
         });
 
