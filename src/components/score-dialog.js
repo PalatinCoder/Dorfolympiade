@@ -99,7 +99,7 @@ class ScoreDialog extends connect(store)(LitElement) {
         <main>
             <div class="qr-scanner" @click="${this._qrCodeScanned}">QR Code Scanner<br>(Platzhalter)</div>
             <paper-input label="Spieler ID" 
-                required auto-validate pattern="[a-z0-9]{4}-[a-z0-9]{4}" allowed-pattern="[a-z0-9-]" error-message="Ungültige ID"
+                auto-validate pattern="[a-z0-9]{4}-[a-z0-9]{4}" allowed-pattern="[a-z0-9-]" error-message="Ungültige ID"
                 @value-changed="${this._updatePlayerLabel}" ?disabled="${this._wasPlayerIdScanned}">
             </paper-input>
             <div id="playerLabel"></div>
