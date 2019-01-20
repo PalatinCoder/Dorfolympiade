@@ -13,7 +13,8 @@ import {
   UPDATE_OFFLINE,
   OPEN_SNACKBAR,
   CLOSE_SNACKBAR,
-  UPDATE_DRAWER_STATE
+  UPDATE_DRAWER_STATE,
+  SET_DEVICEID
 } from '../actions/app.js';
 
 const INITIAL_STATE = {
@@ -23,7 +24,8 @@ const INITIAL_STATE = {
   drawerPersistent: false,
   snackbarOpened: false,
   // Dummy
-  station: { uuid: 0, name: 'Dummy Station' }
+  station: { uuid: 0, name: 'Dummy Station' },
+  deviceId: undefined
 };
 
 const app = (state = INITIAL_STATE, action) => {
@@ -53,6 +55,11 @@ const app = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         snackbarOpened: false
+      };
+    case SET_DEVICEID:
+      return {
+        ...state,
+        deviceId: action.deviceId
       };
     default:
       return state;

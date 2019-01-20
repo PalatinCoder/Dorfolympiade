@@ -1,5 +1,4 @@
 import { html } from "@polymer/lit-element";
-import { deviceId } from "../services/id-generator";
 import { PageViewElement } from "./page-view-element";
 import { connect } from "pwa-helpers/connect-mixin";
 import { store } from "../store";
@@ -35,7 +34,6 @@ class DeviceInfoView extends connect(store)(PageViewElement) {
 
     constructor() {
         super();
-        this._deviceId = deviceId();
     }
 
     updated(changedProperties) {
@@ -53,6 +51,7 @@ class DeviceInfoView extends connect(store)(PageViewElement) {
 
     stateChanged(state) {
         this._station = state.app.station.name;
+        this._deviceId = state.app.deviceId;
     }
 }
 

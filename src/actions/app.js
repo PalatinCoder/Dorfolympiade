@@ -7,12 +7,15 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
+import { deviceId as generateDeviceId } from "../services/id-generator";
+import * as storage from "../services/storage-helper";
 
 export const UPDATE_PAGE = 'UPDATE_PAGE';
 export const UPDATE_OFFLINE = 'UPDATE_OFFLINE';
 export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
 export const OPEN_SNACKBAR = 'OPEN_SNACKBAR';
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
+export const SET_DEVICEID = 'SET_DEVICEID';
 
 export const navigate = (path) => (dispatch) => {
   // Extract the page name from path.
@@ -90,3 +93,14 @@ export const updateDrawerState = (state) => (dispatch, getState) => {
       opened: state.opened === undefined ? getState().app.drawerOpened : state.opened
   });
 };
+
+export const initializeApp = () => (dispatch) => {
+  if(!storage.get('deviceId')) {
+    storage.set('deviceId', generateDeviceId());
+  }
+
+  dispatch({
+    type: SET_DEVICEID,
+    deviceId: storage.get('deviceId')
+  });
+}

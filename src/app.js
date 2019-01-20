@@ -24,7 +24,8 @@ import { store } from './store.js';
 import {
   navigate,
   updateOffline,
-  updateDrawerState
+  updateDrawerState,
+  initializeApp
 } from './actions/app.js';
 
 // These are the elements needed by this element.
@@ -230,6 +231,8 @@ class App extends connect(store)(LitElement) {
     installMediaQueryWatcher(`(min-width: 1440px)`,
     /* persist the drawer if the query matches */
     (matches) => store.dispatch(updateDrawerState({persistent: matches})));
+
+    store.dispatch(initializeApp());
   }
 
   updated(changedProps) {
