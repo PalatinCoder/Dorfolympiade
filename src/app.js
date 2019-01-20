@@ -15,6 +15,7 @@ import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
+import { testLocalStorage } from "./services/storage-helper";
 
 // This element is connected to the Redux store.
 import { store } from './store.js';
@@ -222,6 +223,8 @@ class App extends connect(store)(LitElement) {
   }
 
   firstUpdated() {
+    if(!testLocalStorage()) return false; // cancel loading of the app if we don't have localStorage available
+
     installRouter((location) => store.dispatch(navigate(decodeURIComponent(location.pathname))));
     installOfflineWatcher((offline) => store.dispatch(updateOffline(offline)));
     installMediaQueryWatcher(`(min-width: 1440px)`,
