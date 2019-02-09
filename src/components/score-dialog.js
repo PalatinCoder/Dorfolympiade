@@ -1,4 +1,4 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 import { connect } from "pwa-helpers/connect-mixin";
 import { store } from "../store";
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
@@ -8,89 +8,92 @@ import { Ripple } from "@material/mwc-ripple";
 import { addScore } from "../actions/scores";
 
 class ScoreDialog extends connect(store)(LitElement) {
+    static get styles() {
+        return css`
+        :host {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-height: 100vh;
+            height: 100%;
+            width: 100%;
+            background: var(--palette-surface);
+            color: var(--palette-on-surface);
+            visibility: hidden;
+        }
+        :host([active]) {
+            visibility: visible;
+        }
+        app-toolbar {
+            z-index: 1;
+            width: calc(100% - 32px);
+            height: 64px;
+            padding: 0 16px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            background-color: var(--palette-primary);
+            color: var(--palette-on-primary);
+            justify-content: space-between;
+            opacity: 0;
+            transition: opacity 0.1s ease-out;
+        }
+        :host([active]) app-toolbar {
+            opacity: 1;
+        }
+        app-toolbar button {
+            background: none;
+            border: none;
+            color: var(--palette-on-primary);
+            cursor: pointer;
+            height: 44px;
+            width: 44px;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            transform: rotate(0deg);
+            transition: transform 0.2s ease-out;
+        }
+        :host([active]) app-toolbar button:first-child {
+            transform: rotate(180deg);
+        }
+        app-toolbar span {
+            font-size: 26px;
+        }
+
+        main {
+            padding: 16px;
+            transform: scale(0);
+            transform-origin: 90% 90%;
+            transition: transform 0.1s ease-out;
+        }
+        :host([active]) main {
+            transform: scale(1);
+        }
+        paper-slider {
+            margin-left: -16px;
+            flex-grow: 1;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+        }
+        .slider-container label {
+            margin-left: 4px;
+        }
+
+        main > div { color: #00000099; }
+        div#playerLabel { height: 16px; }
+
+        .qr-scanner {
+            height: 200px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    `;
+    }
+
     render() {
         return html`
-        <style>
-            :host {
-                position: absolute;
-                top: 0;
-                left: 0;
-                min-height: 100vh;
-                height: 100%;
-                width: 100%;
-                background: var(--palette-surface);
-                color: var(--palette-on-surface);
-                visibility: hidden;
-            }
-            :host([active]) {
-                visibility: visible;
-            }
-            app-toolbar {
-                z-index: 1;
-                width: calc(100% - 32px);
-                height: 64px;
-                padding: 0 16px;
-                text-align: center;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                background-color: var(--palette-primary);
-                color: var(--palette-on-primary);
-                justify-content: space-between;
-                opacity: 0;
-                transition: opacity 0.1s ease-out;
-            }
-            :host([active]) app-toolbar {
-                opacity: 1;
-            }
-            app-toolbar button {
-                background: none;
-                border: none;
-                color: var(--palette-on-primary);
-                cursor: pointer;
-                height: 44px;
-                width: 44px;
-                outline: none;
-                -webkit-tap-highlight-color: transparent;
-                transform: rotate(0deg);
-                transition: transform 0.2s ease-out;
-            }
-            :host([active]) app-toolbar button:first-child {
-                transform: rotate(180deg);
-            }
-            app-toolbar span {
-                font-size: 26px;
-            }
-
-            main {
-                padding: 16px;
-                transform: scale(0);
-                transform-origin: 90% 90%;
-                transition: transform 0.1s ease-out;
-            }
-            :host([active]) main {
-                transform: scale(1);
-            }
-            paper-slider {
-                margin-left: -16px;
-                flex-grow: 1;
-            }
-            .slider-container {
-                display: flex;
-                align-items: center;
-            }
-            .slider-container label {
-                margin-left: 4px;
-            }
-
-            main > div { color: #00000099; }
-            div#playerLabel { height: 16px; }
-
-            .qr-scanner {
-                height: 200px;
-                border: 1px solid black;
-                text-align: center;
-            }
-        </style>
         <app-toolbar>
             <button title="Close" @click="${this._close}"><mwc-icon>close</mwc-icon><mwc-ripple unbounded></mwc-ripple></button>
             <span>Erfassen</span>

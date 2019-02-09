@@ -1,4 +1,4 @@
-import { html } from '@polymer/lit-element';
+import { html, css } from 'lit-element';
 import { PageViewElement } from './page-view-element.js';
 import { connect } from "pwa-helpers/connect-mixin";
 import { store } from "../store";
@@ -7,26 +7,29 @@ import '../components/score-dialog';
 import { Fab } from "@material/mwc-fab";
 
 class StationView extends connect(store)(PageViewElement) {
+    static get styles() {
+        return css`
+        h2 { 
+            text-align: center;
+            font-weight: normal;
+            font-size: 24px;
+            color: #000000de;
+        }
+        mwc-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            --mdc-theme-primary: var(--palette-primary);
+            --mdc-theme-secondary: var(--palette-secondary);
+            --mdc-theme-on-primary: var(--palette-on-primary);
+            --mdc-theme-on-secondary: var(--palette-on-secondary);
+        }
+    `;
+    }
+
     render() {
         const headings = ['Spieler', 'Gruppe', 'Punktzahl'];
         return html`
-        <style>
-            h2 { 
-                text-align: center;
-                font-weight: normal;
-                font-size: 24px;
-                color: #000000de;
-            }
-            mwc-fab {
-                position: fixed;
-                bottom: 24px;
-                right: 24px;
-                --mdc-theme-primary: var(--palette-primary);
-                --mdc-theme-secondary: var(--palette-secondary);
-                --mdc-theme-on-primary: var(--palette-on-primary);
-                --mdc-theme-on-secondary: var(--palette-on-secondary);
-            }
-        </style>
         <h2>${this._station.name}</h2>
         <data-table 
             title="Gespeicherte Ergebnisse"

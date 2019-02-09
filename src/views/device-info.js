@@ -1,22 +1,25 @@
-import { html } from "@polymer/lit-element";
+import { html, css } from "lit-element";
 import { PageViewElement } from "./page-view-element";
 import { connect } from "pwa-helpers/connect-mixin";
 import { store } from "../store";
 
 class DeviceInfoView extends connect(store)(PageViewElement) {
+    static get styles() {
+        return css`
+        h2 {
+            text-align: center;
+            font-weight: normal;
+            color: var(--palette-text-primary);
+        }
+        .captioned::first-line {
+            font-size: 14px;
+            color: var(--palette-text-secondary);
+        }
+    `;
+    }
+
     render() {
         return html`
-        <style>
-            h2 {
-                text-align: center;
-                font-weight: normal;
-                color: var(--palette-text-primary);
-            }
-            .captioned::first-line {
-                font-size: 14px;
-                color: var(--palette-text-secondary);
-            }
-        </style>
         <main>
             <h2>Geräteinformationen</h2>
             <canvas id="deviceId"></canvas>
