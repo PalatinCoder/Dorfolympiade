@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>score dialog</title>
+    <title>device info view</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script>
@@ -38,6 +38,7 @@
                 window.QRCode = {toCanvas: function(){}};
                 _generateQrCode = sinon.spy(window.QRCode, 'toCanvas');
                 view = fixture('view');
+                view._deviceId = '5678abcd1234ghij';
                 await view.updateComplete;
             });
 
