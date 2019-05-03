@@ -47,7 +47,7 @@
     "polyserve": "^0.27.15",
     "prpl-server": "^1.4.0",
     "puppeteer": "^1.12.2",
-    "release-it": "^10.1.0",
+    "release-it": "^11.0.3",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
     "wct-mocha": "^1.0.0"
