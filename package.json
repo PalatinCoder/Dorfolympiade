@@ -22,7 +22,7 @@
   "dependencies": {
     "@material/mwc-fab": "^0.3.6",
     "@material/mwc-icon": "^0.3.6",
-    "@material/mwc-ripple": "^0.3.6",
+    "@material/mwc-ripple": "^0.7.0",
     "@polymer/app-layout": "^3.0.2",
     "@polymer/paper-input": "^3.0.1",
     "@polymer/paper-slider": "^3.0.1",
